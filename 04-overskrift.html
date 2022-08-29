@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tilføj knapper</title>
+    <title>overskrift</title>
     <style>
       #beholder {
         display: grid;
@@ -27,8 +27,7 @@
     </style>
   </head>
   <body>
-    <h1>Persongalleri</h1>
-
+    <h1>Alle</h1>
     <nav>
       <button data-troende="alle" class="valgt">Alle</button>
       <button data-troende="ja">Troende</button>
@@ -51,6 +50,8 @@
     </template>
 
     <script>
+      const header = document.querySelector("h1");
+
       const endpoint = "https://persongalleri-5d3e.restdb.io/rest/persongalleri";
       const mereinfo = {
         headers: {
@@ -65,6 +66,7 @@
       function start() {
         const filterKnapper = document.querySelectorAll("nav button");
         filterKnapper.forEach((knap) => knap.addEventListener("click", filtrerPersoner));
+
         hentdata();
       }
 
@@ -72,6 +74,7 @@
         filter = this.dataset.troende;
 
         visPersoner();
+        header.textContent = this.textContent;
       }
 
       async function hentdata() {
