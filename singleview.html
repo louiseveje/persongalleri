@@ -1,0 +1,55 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>singleview</title>
+    <style>
+      img {
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <img src="" alt="" />
+      <h2></h2>
+    </article>
+
+    <script>
+      //søg efter URL parametre
+      const urlParams = new URLSearchParams(window.location.search);
+      let id = urlParams.get("id");
+      console.log({ id });
+
+      let person;
+
+      const endpoint = "https://persongalleri-5d3e.restdb.io/rest/persongalleri/" + id;
+      const mereinfo = {
+        headers: {
+          "x-apikey": "600fe9211346a1524ff12e31",
+        },
+      };
+
+      async function hentdata() {
+        const response = await fetch(endpoint, mereinfo);
+        person = await response.json();
+        console.log(person);
+        visPerson();
+      }
+
+      //kald function visDetaljer
+      function visPerson() {
+        const single = document.querySelector("article");
+
+        single.querySelector("img").src = "billeder/" + person.billede;
+        single.querySelector("h2").textContent = person.fornavn + " " + person.efternavn;
+      }
+
+      hentdata();
+    </script>
+  </body>
+</html>

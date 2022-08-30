@@ -45,8 +45,17 @@
       }
 
       #popup article {
-        width: 80%;
+        width: 50%;
         background-color: rgb(206, 206, 206);
+      }
+
+      #luk button {
+        background-color: #000000aa;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        padding-inline: 0.5rem;
       }
     </style>
   </head>
@@ -72,13 +81,14 @@
       </article>
     </template>
 
-    <div id="popup">
+    <section id="popup">
       <article>
+        <div id="luk"><button>X</button></div>
         <img src="" alt="" />
         <h2></h2>
         <p></p>
       </article>
-    </div>
+    </section>
 
     <script>
       const header = document.querySelector("h1");
@@ -142,15 +152,18 @@
         });
       }
 
-      document.querySelector("#popup").addEventListener("click", () => (popup.style.display = "none"));
+      document.querySelector("#luk").addEventListener("click", () => (popup.style.display = "none"));
 
       //kald function visPerson
       function visPerson(personData) {
         //console.log så man kan se om funktionen bliver kaldt
         console.log(personData);
         const popup = document.querySelector("#popup");
+        // const luk = document.querySelector("#luk");
+
         //vis popup når der bliver klikket vha style i javascript
         popup.style.display = "flex";
+
         // "=" erstat det der er, og sæt en ny ind - derfor kommer der forskellige personer op hver gang
         popup.querySelector("h2").textContent = personData.fornavn + " " + personData.efternavn;
         popup.querySelector("img").src = "billeder/" + personData.billede;
