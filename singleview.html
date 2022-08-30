@@ -17,6 +17,7 @@
     <article>
       <img src="" alt="" />
       <h2></h2>
+      <button>Tilbage til galleri</button>
     </article>
 
     <script>
@@ -27,7 +28,7 @@
 
       let person;
 
-      const endpoint = "https://persongalleri-5d3e.restdb.io/rest/persongalleri/" + id;
+      const endpoint = `https://persongalleri-5d3e.restdb.io/rest/persongalleri/${id}`;
       const mereinfo = {
         headers: {
           "x-apikey": "600fe9211346a1524ff12e31",
@@ -47,6 +48,11 @@
 
         single.querySelector("img").src = "billeder/" + person.billede;
         single.querySelector("h2").textContent = person.fornavn + " " + person.efternavn;
+        single.querySelector("button").addEventListener("click", tilbageTilPersonGalleri);
+      }
+
+      function tilbageTilPersonGalleri() {
+        history.back();
       }
 
       hentdata();
